@@ -64,6 +64,26 @@ document.body.addEventListener("mouseleave",() => {
 })
 //End of Mouse Circle
 
+//navigation
+const menuIcon = document.querySelector('.menu-icon')
+const navbar = document.querySelector('.navbar')
+
+document.addEventListener('scroll',()=> {
+    menuIcon.classList.add("show-menu-icon");
+    navbar.classList.add("hide-navbar");
+
+    if(window.scrollY === 0){
+        menuIcon.classList.remove("show-menu-icon")
+        navbar.classList.remove("hide-navbar")
+    }
+});
+
+menuIcon.addEventListener('click',()=> {
+    menuIcon.classList.remove("show-menu-icon")
+    navbar.classList.remove("hide-navbar")
+})
+//end of navigation
+
 //main button
 const mainBtns = document.querySelectorAll(".main-btn");
 

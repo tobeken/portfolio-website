@@ -50,12 +50,46 @@ const animateCircles = (e,x,y) => {
 
 //end of Animated Circles
 
+let hoverdElPosition = [];
+
+const stickyElement = (x, y, hoveredEl) => {
+    // Sticky Element
+    if (hoveredEl.classList.contains("sticky")) {
+      hoveredElPosition.length < 1 &&
+        (hoveredElPosition = [hoveredEl.offsetTop, hoveredEl.offsetLeft]);
+  
+      hoveredEl.style.cssText = `top: ${y}px; left: ${x}px`;
+  
+      if (
+        hoveredEl.offsetTop <= hoveredElPosition[0] - 100 ||
+        hoveredEl.offsetTop >= hoveredElPosition[0] + 100 ||
+        hoveredEl.offsetLeft <= hoveredElPosition[1] - 100 ||
+        hoveredEl.offsetLeft >= hoveredElPosition[1] + 100
+      ) {
+        hoveredEl.style.cssText = "";
+        hoveredElPosition = [];
+      }
+  
+      hoveredEl.onmouseleave = () => {
+        hoveredEl.style.cssText = "";
+        hoveredElPosition = [];
+      };
+    }
+    // End of Sticky Element
+  };
+
 document.body.addEventListener("mousemove", (e) => {
     let x = e.clientX;
     let y = e.clientY;
     
     animateCircles(e,x,y)
     mouseCircleFn(x, y);
+
+//sticky element
+const hoveredEl = document.elementsFromPoint(x,y);
+
+stickyElement(e,y,hoveredEl);
+
 });
 
 document.body.addEventListener("mouseleave",() => {

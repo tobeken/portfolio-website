@@ -555,6 +555,7 @@ html {
     top: 2rem;
     opacity: 0.5;
     transition: top 4s 0.2s, opacity 0.2s;
+    pointer-events:none ;
 }
 
 .project:nth-child(odd):hover img {
@@ -719,6 +720,7 @@ html {
     font-weight: bold;
     color: #9b0e0e;position: absolute;
     right: 0;
+    pointer-events: none;
     transition: right .5s;
 }
 
